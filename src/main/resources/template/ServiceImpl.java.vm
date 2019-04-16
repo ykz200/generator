@@ -1,0 +1,32 @@
+import java.util.List;
+
+import com.sky.common.util.JdbcTemplateDaoSupport;
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+
+    @Override
+    public List<${className}Bean> list${className}(${className}Bean ${classname}Bean) {
+        String sql = " select * from ${tableName}";
+        return JdbcTemplateDaoSupport.getList(sql, new ${className}Bean());
+    }
+
+    @Override
+    public boolean add${className}(${className}Bean ${classname}Bean) {
+        String sql = "INSERT INTO ${tableName} " +
+                "(#foreach($column in $columns)${column.columnName}#if($foreach.hasNext),#end #end) " +
+                "VALUES " + "( #foreach($column in $columns):$column.attrname#if($foreach.hasNext),#end#end );";
+        return JdbcTemplateDaoSupport.updateOrAddOrDele(sql, ${classname}Bean);
+    }
+
+    @Override
+    public boolean update${className}(${className}Bean ${classname}Bean) {
+
+        String sql = "UPDATE ${tableName} " +
+                "#foreach($column in $columns)#if(${column.columnName} != ${pk.columnName})${column.columnName}=:${column.attrname}#if($foreach.hasNext),#end#end #end" +
+                " WHERE  ${pk.columnName}=${pk.attrname}";
+        return JdbcTemplateDaoSupport.updateOrAddOrDele(sql, ${classname}Bean);
+    }
+
+}

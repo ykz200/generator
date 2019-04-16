@@ -1,0 +1,354 @@
+<!--控制台-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css"/>
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css"/>
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <!--<link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.custom.min.css"/>-->
+    <link rel="stylesheet" href="assets/css/chosen.css"/>
+    <link rel="stylesheet" href="assets/css/datepicker.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.css"/>
+    <link rel="stylesheet" href="assets/css/daterangepicker.css"/>
+    <link rel="stylesheet" href="assets/css/colorpicker.css"/>
+
+
+    <link rel="stylesheet" href="assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css"/>
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css"/>
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="assets/js/ace-extra.min.js"></script>
+
+
+</head>
+<style>
+    .chosen-container > .chosen-single, [class*="chosen-container"] > .chosen-single {
+        line-height: 28px;
+        width: 508px;
+        height: 30px;
+        box-shadow: none;
+        background: #fafafa;
+    }
+
+    element.style {
+        width: 500px;
+    }
+
+    .form-actions {
+        display: block;
+        border-top: 1px solid #e5e5e5;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        padding: 19px 20px 20px;
+        background-color: #e4e6e9;
+    }
+
+    .form-actions {
+        display: block;
+        border-top: 1px solid #e5e5e5;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        margin-left: 238px;
+        padding: 19px 20px 20px;
+        background-color: #e4e6e9;
+    }
+
+    body {
+        margin-top: 54px;
+        padding-bottom: 0;
+        background-color: #e4e6e9;
+        min-height: 100%;
+        font-family: 'Open Sans';
+        font-size: 13px;
+        color: #393939;
+        line-height: 1.5;
+    }
+
+    .chosen-container.chosen-container-single {
+        width: 508px !important;
+    }
+
+    #yi {
+        display: none;
+    }
+</style>
+
+<body onload="getCookie();">
+<div>
+    <form class="form-horizontal" role="form" id="add_Case_Form">
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 数据库： </label>
+            <div class="col-sm-9">
+                <select class="width-80 chosen-select" id="form-field-select-3" data-placeholder="Choose a Country...">
+                    <option value="">MySQL</option>
+                    <option value="WV">数据库1</option>
+                    <option value="WI">数据库2</option>
+                    <option value="WY">数据库3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 数据源： </label>
+            <div class="col-sm-9">
+                <select class="width-80 chosen-select" id="form-field-select-2" data-placeholder="Choose a Country..."
+                >
+                    <option value="se" id="se">请选择数据源</option>
+
+                </select>
+                <div id="aa"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> IP地址： </label>
+
+            <div class="col-sm-9">
+                <input type="text" id="url" name="url" placeholder="" class="col-xs-10 col-sm-5">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 库名： </label>
+
+            <div class="col-sm-9">
+                <input type="text" id="db" name="db" placeholder="" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 端口： </label>
+
+            <div class="col-sm-9">
+                <input type="text" id="port" name="port" placeholder="" class="col-xs-10 col-sm-5" value="3306">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名： </label>
+
+            <div class="col-sm-9">
+                <input type="text" id="username" name="username" placeholder="" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 密码： </label>
+
+            <div class="col-sm-9">
+                <input type="password" id="password" name="password" placeholder="" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 备注： </label>
+
+            <div class="col-sm-9">
+                <input type="text" id="1" placeholder="" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+
+        <div class="clearfix form-actions">
+            <div class="col-md-offset-3 col-md-9">
+                <input class="btn btn-info" type="button" onclick="save()" value=" 连接">
+                <!--<i class="icon-ok bigger-110"></i>-->
+                <!--连接-->
+                </input>
+                &nbsp; &nbsp; &nbsp;
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="assets/css/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/css/jquery.cookie.js" charset="utf-8"></script>
+<script type="text/javascript">
+    //    function setCookie() {
+    //        var url = $("#url").val();
+    //        var db = $("#db").val();
+    //        var port = document.getElementById("port").value;
+    //        var password = $("#password").val();
+    //        var username = $("#username").val();
+    //        $.cookie("url", url);
+    //        $.cookie("db", db);
+    //        $.cookie("port", port);
+    //        $.cookie("password", password);
+    //        $.cookie("username", username);
+    //    }
+    jQuery(document).ready(function () {
+
+        var jsonStr = $.cookie("jsonStr");
+        var jsonObj = eval("(" + jsonStr + ")");
+
+        //  console.log(jsonObj);
+
+        var str = '';
+        var str2 = '';
+        for (var o in jsonObj) {
+
+            str += '<option value="' + jsonObj[o].id + '"  >' + jsonObj[o].url + '，' + jsonObj[o].db + '，' + jsonObj[o].port + '，' + jsonObj[o].username + '</option>';
+            str2 = '<input type="hidden" name="field＿name" id="pw" value="' + jsonObj[o].password + '">'
+        }
+
+        $("#form-field-select-2").append(str);
+        $("#aa").append(str2);
+
+        document.getElementById("form-field-select-2").onchange = function () {
+
+            if (this.options.selectedIndex != 0) {
+                document.getElementById("url").value = this.options[this.options.selectedIndex].text;
+                var a = this.options[this.options.selectedIndex].text;
+                var b = a.split("，");
+                document.getElementById("url").value = b[0];
+                document.getElementById("db").value = b[1];
+                document.getElementById("port").value = b[2];
+                 // document.getElementById("password").value = b[3];
+                document.getElementById("username").value = b[3];
+                document.getElementById("password").value = document.getElementById("pw").value;
+              //  console.log(document.getElementById("b").value);
+
+            }
+
+
+        }
+
+
+//        $("#form-field-select-2").change(function () {
+//                $("#url").val(jsonObj.url);
+//                $("#db").val(jsonObj.db);
+//                $("#port").val(jsonObj.port);
+//                $("#password").val(jsonObj.password);
+//                $("#username").val(jsonObj.username);
+//
+//        });
+
+
+    });
+
+
+    function getCookie() {
+        var url = $.cookie("url");
+        var db = $.cookie("db");
+        var port = $.cookie("port");
+        var password = $.cookie("password");
+        var username = $.cookie("username");
+        password
+
+        if (url) {
+            $("#url").val(url);
+        }
+        if (db) {
+            $("#db").val(db);
+        }
+        if (port) {
+            $("#port").val(port);
+        }
+        if (password) {
+            $("#password").val(password);
+        }
+        if (username) {
+            $("#username").val(username);
+        }
+
+    }
+
+    function save() {
+
+        var url = $("#url").val();
+        var db = $("#db").val();
+        var port = document.getElementById("port").value;
+        var password = $("#password").val();
+        var username = $("#username").val();
+
+        if ("" != url) {
+        } else {
+            alert("请填写IP地址!");
+            return;
+        }
+        if ("" != db) {
+        } else {
+            alert("请填写库名!");
+            return;
+        }
+        if ("" != port) {
+        } else {
+            alert("请填写端口!");
+            return;
+        }
+        if ("" != username) {
+        } else {
+            alert("请填写用户名!");
+            return;
+        }
+        if ("" != password) {
+        } else {
+            alert("请填写密码!");
+            return;
+        }
+
+        $.ajax({
+            url: "sys/generator/session",
+            type: "post",
+            dataType: 'json', //接受数据格式 (这里有很多,常用的有html,xml,js,json)
+            data: {
+                url: url, db: db, port: port, username: username, password: password
+            },
+            success: function (data) {
+                //   console.log(data)
+                if (data.status == true) {
+                    window.location.href = "../generator.html";
+                } else {
+                    //
+                    // window.location.href = "${system}/manage_TeamPeople/teamPeopleList?typeId=" + typeId;
+                    window.location.reload();
+                    //  alert(data)
+
+                }
+            }
+        })
+
+
+    }
+
+
+</script>
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/typeahead-bs2.min.js"></script>
+<script src="assets/js/chosen.jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $(".chosen-select").chosen();
+        $('#chosen-multiple-style').on('click', function (e) {
+            var target = $(e.target).find('input[type=radio]');
+            var which = parseInt(target.val());
+            if (which == 2) $('#form-field-select-4').addClass('tag-input-style');
+            else $('#form-field-select-4').removeClass('tag-input-style');
+        });
+
+    });
+</script>
+<script>
+
+
+</script>
+
+</body>
+</html>

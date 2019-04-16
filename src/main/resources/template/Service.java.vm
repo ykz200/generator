@@ -1,0 +1,26 @@
+import java.util.List;
+
+/**
+ *
+ * @author
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+
+
+    /**
+    * 查全部
+    */
+    public List<${className}Bean> list${className}(${className}Bean ${classname}Bean);
+
+    /**
+    * 新增
+    */
+    public boolean add${className}(${className}Bean ${classname}Bean);
+
+    /**
+    * 更新
+    */
+    public boolean update${className}(${className}Bean ${classname}Bean);
+}
+
